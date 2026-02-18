@@ -22,15 +22,25 @@ twitter: prinsessmarthe # Do not include the '@' symbol
 short_bio_text_justify: false
 short_bio: >-
   <p>
-    I am a master's student in mathematics at the University of Michigan. I've also recently decided to pursue a master's in applied economics for professional reasons.
-    My focus in primarily monetary economics and policy, however, I am also interested in other areas, such as utility theory, behavioral economics, and labor economics.
-    Math interests include measure theory, topology, topological data analysis, and stochastic processes. I post some of my individual research here. 
+    I am very bad at these but hello! I am Marthe Olivia Harme Forus (yes, I have four names). I have a bachelors in Mathematics from the Univerisity of Oslo and I am a master's student at the University of Michigan. I've also recently decided to pursue a master's in applied economics for professional reasons.
+    Iam not sure if I want to pursue a PhD in the future; however, hopefully this portfolio will help me expand and discover my research interests.
   </p>
-  <div class="h6 mt-5">Brief Biography</div>
-  <p
-    I am currently a research assistant at the Medical Informatics Collaboration Unit (MCU) of <a href="https://yuhs.severance.healthcare/yuhs-en/index.do" target="_blank">Yonsei University Health System (YUHS)</a> in Seoul, Republic of Korea. 
-
-    From August 2024 to February 2025, I was a visiting scholar at the <a href="https://www.cs.cmu.edu/" target="_blank">CMU School of Computer Science</a> as part of the <a href="https://www.msit.go.kr/eng/bbs/view.do?sCode=eng&mId=4&mPid=2&bbsSeqNo=42&nttSeqNo=697" target="_blank">Carnegie Mellon University Intensive AI Education Program</a> sponsored by the South Korean government.
+  <p>
+  My primary research interests involves monetary economics and utility theory, however, I am also interested in the following areas
+  <ul>
+    <li>
+    <b>Behavioral Economics:</b> Social preferences, rationality, environmental behavior.
+    </li>
+    <li>
+    <b>Labor Economics:</b> Applied microeconometric methods, labor supply theory.
+    </li>
+    <li>
+    <b>Topology:</b> Topological data analysis, geometric machine learning, manifold learning.
+    </li>
+    <li>
+    <b>Stochastic Processes:</b> Stochastic differential equations, stochastic geometry, asset pricing.
+    </li>
+  </ul>
   </p>
 # <div class="bd-callout bd-callout-info bg-white shadow-sm">
 #   <i class="fas fa-info-circle" style="margin-right: 0.2em;"></i>
