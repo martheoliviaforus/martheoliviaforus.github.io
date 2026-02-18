@@ -1,0 +1,105 @@
+primary_name: "Marthe Olivia Forus"
+secondary_name: ""
+navbar_name: "Marthe Olivia Forus"
+
+positions:
+  # - logo: /assets/images/badges/MIT_Social_circle.png  # Logo is optional
+  #   name: Position 1 with logo
+  - name: Master's Student
+  - name: <a href="https://lsa.umich.edu/math" target="_blank">University of Michigan (UMich)</a>
+
+email: "marthe.forus@gmail.com"
+cv_link: https://shiwonkim.github.io/uploads/CV_ShiwonKim_one_page.pdf
+# gscholar: 2M8pQ4MAAAAJ # This is an example, replace it with your own Google Scholar ID
+github: martheoliviaforus
+twitter: prinsessmarthe # Do not include the '@' symbol
+# wechat_qrcode: /assets/images/etc/wechat.jpg
+# wechat_prompt: >-
+#   Please tell me your <strong>name</strong> and <strong>affiliation</strong> (current or past) when adding my wechat. Thanks!
+# linkedin: shiwon-kim-958462173
+# orcid: 0009-0007-8197-0816
+
+short_bio_text_justify: false
+short_bio: >-
+  <p>
+    I am a master's student in mathematics at the University of Michigan. I've also recently decided to pursue a master's in applied economics for professional reasons.
+    My focus in primarily monetary economics and policy, however, I am also interested in other areas, such as utility theory, behavioral economics, and labor economics.
+    Math interests include measure theory, topology, topological data analysis, and stochastic processes. I post some of my individual research here. 
+  </p>
+  <div class="h6 mt-5">Brief Biography</div>
+  <p
+    I am currently a research assistant at the Medical Informatics Collaboration Unit (MCU) of <a href="https://yuhs.severance.healthcare/yuhs-en/index.do" target="_blank">Yonsei University Health System (YUHS)</a> in Seoul, Republic of Korea. 
+
+    From August 2024 to February 2025, I was a visiting scholar at the <a href="https://www.cs.cmu.edu/" target="_blank">CMU School of Computer Science</a> as part of the <a href="https://www.msit.go.kr/eng/bbs/view.do?sCode=eng&mId=4&mPid=2&bbsSeqNo=42&nttSeqNo=697" target="_blank">Carnegie Mellon University Intensive AI Education Program</a> sponsored by the South Korean government.
+  </p>
+# <div class="bd-callout bd-callout-info bg-white shadow-sm">
+#   <i class="fas fa-info-circle" style="margin-right: 0.2em;"></i>
+#   I am actively seeking Ph.D. opportunities starting in Fall 2026.
+#   If you're looking for a motivated Ph.D. student or collaborator in this area, please feel free to reach out!
+# </div>
+
+portrait_url: /assets/images/photos/main.jpg
+# portrait_caption: >-
+#   Photo by Manja Vitolic on Unsplash (this caption is optional, comment it out to disable).
+
+education:
+  # - name: Massachusetts Institute of Technology
+  #   logo: /assets/images/badges/MIT_Social_circle.png
+  #   position: >-
+  #     Department of Electrical Engineering and Computer Science <br/>
+  #     Ph.D. Student
+  #   date: Sep. 2024 - present
+  - name: University of Michigan
+    logo: /assets/images/badges/umich_logo.png
+    position: >-
+      M.S. Mathematics
+    #      M.S., Digital Analytics <a href="https://shiwonkim.github.io/uploads/Masters_Thesis.pdf" target="_blank">[Thesis]</a> <br/>
+    description: Student
+    date: Aug. 2025 - present
+    place: Ann Arbor, MI
+  - name: University of Michigan
+    logo: /assets/images/badges/umich_logo.png
+    position: M.A. Applied Economics
+    description: Student
+    date: Aug. 2025 - present
+    place: Ann Arbor, MI
+  - name: University of Oslo
+    logo: /assets/images/badges/UiO_logo.png
+    position: B.Sc. Mathematics
+    date: Aug. 2019 - Jun. 2024
+    place: Oslo, Norway
+
+experience:
+  - name: University of Michigan
+    logo: /assets/images/badges/umich_logo.png
+    position: >-
+      Student Ambassador
+    date: Jan. 2026 - Present
+    place: Ann Arbor, MI
+  # - name: Digital Healthcare Lab
+  #   logo: /assets/images/badges/Yonsei.png
+  #   position: >-
+  #     Graduate Research Assistant <br/>
+  #   description: Advised by Prof. Yu Rang Park
+  #   date: Mar. 2023 - Jun. 2025
+  #   place: Seoul, Korea
+  # - name: Carnegie Mellon University
+  #   logo: /assets/images/badges/CMU.jpg
+  #   position: >-
+  #     Visiting Scholar, Computer Science <br/>
+  #   description: Korean Government Fellowship
+  #   date: Aug. 2024 - Feb. 2025
+  #   place: Pittsburgh, PA
+  # - name: University of Washington
+  #   logo: /assets/images/badges/UW_gold.png
+  #   position: >-
+  #     Undergraduate Exchange Student
+  #   date: Sep. 2018 - Jun. 2019
+  #   place: Seattle, WA
+# awards:
+# - name: Award Name 2
+#   date: 2024
+# - name: Award Name 1
+#   date: 2021
+# - name: A quick brown fox jumps over the lazy dog and runs away award
+#   date: 2021

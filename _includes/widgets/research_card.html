@@ -1,0 +1,17 @@
+{% assign item = include.item %}
+<div class="p-3 {% unless include.hide_bottom_border %}border-bottom{% endunless %} border-gray">
+    <h6 class="mt-0 mb-1 font-weight-normal">
+        <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
+    </h6>
+    <p class="mt-0 mb-1 small text-muted">{{ item.date | date: "%B %d, %Y" }}</p>
+    {% if item.intro %}
+    <p class="mt-0 mb-0 small text-muted">{{ item.intro }}</p>
+    {% endif %}
+    {% if item.tags.size > 0 %}
+    <p class="mt-1 mb-0 small">
+        {% for tag in item.tags %}
+        <span class="badge badge-secondary mr-1">{{ tag }}</span>
+        {% endfor %}
+    </p>
+    {% endif %}
+</div>

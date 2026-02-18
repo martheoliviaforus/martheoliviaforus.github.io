@@ -1,0 +1,18 @@
+{% assign limit = include.limit | default: 5 %}
+{% assign research_items = site.research | sort: "date" | reverse %}
+<div class="mt-3 mb-0 p-0 bg-white shadow-sm rounded-xl">
+
+  <div class="border-bottom border-gray p-3 mb-0">
+    <h6 class="mb-0">
+      {% if include.title %}{{ include.title }}{% else %}<i class="fas fa-search"></i> Research Highlights{% endif %}
+    </h6>
+  </div>
+
+  {% for item in research_items limit:limit %}
+    {% include widgets/research_card.html item=item hide_bottom_border=forloop.last first=forloop.first last=forloop.last %}
+  {% endfor %}
+
+  <h6 class="d-block p-3 mt-0 mb-0 text-right font-weight-normal">
+    <a href="{{ 'research' | relative_url }}">All Research <i class="fas fa-angle-double-right"></i></a>
+  </h6>
+</div>

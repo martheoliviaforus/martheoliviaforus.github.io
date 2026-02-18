@@ -1,0 +1,102 @@
+primary_name: "Marthe Olivia Forus"
+secondary_name: ""
+navbar_name: "Marthe Olivia Forus"
+
+positions:
+  # - logo: /assets/images/badges/MIT_Social_circle.png  # Logo is optional
+  #   name: Position 1 with logo
+  - name:
+  - name: <a href="https://lsa.umich.edu/math" target="_blank">University of Michigan (UMich)</a>
+
+email: "marthe.forus@gmail.com"
+cv_link: https://shiwonkim.github.io/uploads/CV_ShiwonKim_one_page.pdf
+# gscholar: 2M8pQ4MAAAAJ # This is an example, replace it with your own Google Scholar ID
+github: shiwonkim
+# twitter: your_twitter_id  # Do not include the '@' symbol
+# wechat_qrcode: /assets/images/etc/wechat.jpg
+# wechat_prompt: >-
+#   Please tell me your <strong>name</strong> and <strong>affiliation</strong> (current or past) when adding my wechat. Thanks!
+linkedin: shiwon-kim-958462173
+# orcid: 0009-0007-8197-0816
+
+short_bio_text_justify: false
+short_bio: >-
+  <p>
+    I am an AI researcher with primary interests in developing scalable and data-efficient learning systems, particularly for applications in medical imaging. 
+    My work focuses on learning from evolving and limited (scarce or privacy-sensitive) data conditions that are common in real-world scenarios but remain challenging for deep learning models. 
+    Learn more about my research <a href="https://shiwonkim.github.io/research">here</a>.
+  </p>
+  <p>
+    Research keywords include: <span class="text-hl">continual learning</span>, <span class="text-hl">few-shot learning</span>, <span class="text-hl">medical imaging</span>, and so on.
+  </p>
+  <div class="h6 mt-5">Brief Biography</div>
+  <p>
+    I am currently a research assistant at the Medical Informatics Collaboration Unit (MCU) of <a href="https://yuhs.severance.healthcare/yuhs-en/index.do" target="_blank">Yonsei University Health System (YUHS)</a> in Seoul, Republic of Korea. 
+    Previously, I finished my M.S. in Digital Analytics at <a href="https://www.yonsei.ac.kr/sites/en_sc/index.do" target="_blank">Yonsei University</a> in August 2025, under the supervision of <a href="https://scholar.google.com/citations?user=DNs7sk4AAAAJ&hl=en" target="_blank">Prof. Yu Rang Park</a> at the <a href="https://www.dhlab.org/" target="_blank">Digital Healthcare Lab (DHLab)</a>. 
+    I received my B.B.A. in Business Administration from the same university in 2023. 
+    From August 2024 to February 2025, I was a visiting scholar at the <a href="https://www.cs.cmu.edu/" target="_blank">CMU School of Computer Science</a> as part of the <a href="https://www.msit.go.kr/eng/bbs/view.do?sCode=eng&mId=4&mPid=2&bbsSeqNo=42&nttSeqNo=697" target="_blank">Carnegie Mellon University Intensive AI Education Program</a> sponsored by the South Korean government.
+  </p>
+# <div class="bd-callout bd-callout-info bg-white shadow-sm">
+#   <i class="fas fa-info-circle" style="margin-right: 0.2em;"></i>
+#   I am actively seeking Ph.D. opportunities starting in Fall 2026.
+#   If you're looking for a motivated Ph.D. student or collaborator in this area, please feel free to reach out!
+# </div>
+
+portrait_url: /assets/images/photos/headshot.png
+# portrait_caption: >-
+#   Photo by Manja Vitolic on Unsplash (this caption is optional, comment it out to disable).
+
+education:
+  # - name: Massachusetts Institute of Technology
+  #   logo: /assets/images/badges/MIT_Social_circle.png
+  #   position: >-
+  #     Department of Electrical Engineering and Computer Science <br/>
+  #     Ph.D. Student
+  #   date: Sep. 2024 - present
+  - name: Yonsei University
+    logo: /assets/images/badges/Yonsei.png
+    position: >-
+      M.S., Digital Analytics <a href="https://shiwonkim.github.io/uploads/Masters_Thesis.pdf" target="_blank">[Thesis]</a> <br/>
+    description: Advised by Prof. Yu Rang Park
+    date: Mar. 2023 - Aug. 2025
+    place: Seoul, Korea
+  - name: Yonsei University
+    logo: /assets/images/badges/Yonsei.png
+    position: B.B.A., Business Administration
+    date: Mar. 2017 - Feb. 2023
+    place: Seoul, Korea
+
+experience:
+  - name: Yonsei University Health System
+    logo: /assets/images/badges/Yonsei.png
+    position: >-
+      Research Assistant in AI
+    date: Jul. 2025 - Present
+    place: Seoul, Korea
+  - name: Digital Healthcare Lab
+    logo: /assets/images/badges/Yonsei.png
+    position: >-
+      Graduate Research Assistant <br/>
+    description: Advised by Prof. Yu Rang Park
+    date: Mar. 2023 - Jun. 2025
+    place: Seoul, Korea
+  - name: Carnegie Mellon University
+    logo: /assets/images/badges/CMU.jpg
+    position: >-
+      Visiting Scholar, Computer Science <br/>
+    description: Korean Government Fellowship
+    date: Aug. 2024 - Feb. 2025
+    place: Pittsburgh, PA
+  - name: University of Washington
+    logo: /assets/images/badges/UW_gold.png
+    position: >-
+      Undergraduate Exchange Student
+    date: Sep. 2018 - Jun. 2019
+    place: Seattle, WA
+# awards:
+# - name: Award Name 2
+#   date: 2024
+# - name: Award Name 1
+#   date: 2021
+# - name: A quick brown fox jumps over the lazy dog and runs away award
+#   date: 2021
