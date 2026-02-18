@@ -3,6 +3,7 @@ title: A Survey of Model-Based Reinforcement Learning
 date: 2023-05-28
 layout: blog
 permalink: /blogs/2023-05/model-based-rl-survey/
+cover: /assets/images/2023-05-28/worldmodel.png
 tags:
   - RL
   - Survey
@@ -19,7 +20,7 @@ In recent years, development in Reinforcement Learning (RL) contributes to super
 
 In recent years, development in Reinforcement Learning (RL) contributes to super-human performances in games, such as Go[^silver2016mastering], Chess, and StarCraft, as well as in daily contexts, including conversation and robot control. Especially, large language models combined with RL with Human Feedback (RLHF) show great potential in aligning with human intentions and are in some ways shaping the world we live in. 
 
-Despite its great influence, RL itself seems straightforward. The goal of RL is to find a policy that maximizes the sum of future rewards. Formally, a Markovian Decision Process (MDP) is denoted as $\langle S, A, P, R, \gamma \rangle$, where $S$ denotes the state, $A$ the action, $P$ the transition probability, $R$ the reward, and $\gamma$ the discount factor. At each state $s_t$, the agent takes an action $a_t$ and observes the next state $s_{t+1}=f(s_t, a_t)$ as well as a reward $r_t$. The goal is to maximize future rewards: $G_t = \sum_i \gamma^i r_{t+i}$. 
+Despite its great influence, RL itself seems straightforward. The goal of RL is to find a policy that maximizes the sum of future rewards. Formally, a Markovian Decision Process (MDP) is denoted as $\langle S, A, P, R, \gamma \rangle$, where $S$ denotes the state, $A$ the action, $P$ the transition probability, $R$ the reward, and $\gamma$ the discount factor. At each state $s\_t$, the agent takes an action $a\_t$ and observes the next state $s\_\{t+1\}=f(s\_t, a\_t)$ as well as a reward $r\_t$. The goal is to maximize future rewards: $G\_t = \sum\_i \gamma^i r\_\{t+i\}$. 
 
 ### Model-Based Reinforcement Learning
 
@@ -39,7 +40,7 @@ Most MBRL algorithms divide the problem into two separate processes, one is to l
 
 We will begin with model learning. These methods vary a lot, from the simplest model that only predicts one-step transition, to the most complex model that builds upon modern structures such as transformers. 
 
-Then, we will dive into the topic of model usage. In MBRL, the policy can either be learning-free or learning-based. In this survey, we will present three types of learning-free policies, namely, random shooting, Monte-Carlo tree search, and linear quadratic regulator. Next, we will turn to learning-based policies where the policy is parameterized by a neural network. There are various learning processes, and we will mainly focused on direct gradient, MFRL, and imitation learning cases. 
+Then, we will dive into the topic of model usage. In MBRL, the policy can either be learning-free or learning-based. In this survey, we will present three types of learning-free policies, namely, random shooting, Monte-Carlo tree search, and linear quadratic regulator. Next, we will turn to learning-based policies where the policy is parameterized by a neural network. There are various learning processes, and we will mainly focus on direct gradient, MFRL, and imitation learning cases. 
 
 We will end the survey with a brief discussion of future directions.
 
@@ -49,10 +50,10 @@ The most important process in MBRL is model learning. An ideal model should give
 
 ### Transition Model
 
-The most straight-forward method would be to directly model the one-step transition function $s_t=f(s_t,a_t)$. Using neural network to approximate the function, we can thus use supervised learning to minimize the mean-squared error between predicted states and real states. To avoid the distribution mismatch, we constantly rollout the current policy to add on-policy trajectories into the training dataset. To alleviate the model compounding errors, we normally apply Model Predictive Control (MPC), executing only the first action in the predicted action series and discarding the subsequent actions. In other word, we replan every step to maintain a relatively on-policy planning. This gives us the general training framework of dymacis model as illustrated: 
+The most straight-forward method would be to directly model the one-step transition function $s\_t=f(s\_t,a\_t)$. Using neural network to approximate the function, we can thus use supervised learning to minimize the mean-squared error between predicted states and real states. To avoid the distribution mismatch, we constantly rollout the current policy to add on-policy trajectories into the training dataset. To alleviate the model compounding errors, we normally apply Model Predictive Control (MPC), executing only the first action in the predicted action series and discarding the subsequent actions. In other words, we replan every step to maintain a relatively on-policy planning. This gives us the general training framework of dynamics model as illustrated: 
 
 ```text
-1. Run policy $\Pi(a_t \mid s_t)$ to collect dataset D = {(s, a, s')}
+1. Run policy $\Pi(a\_t \mid s\_t)$ to collect dataset D = {(s, a, s')}
 2. while not converged:
     a. Train the dynamics model f(s, a) on dataset D (minimize loss)
     b. Rollout policy via f(s, a) to plan actions
@@ -60,42 +61,44 @@ The most straight-forward method would be to directly model the one-step transit
     d. Add (s, a, s') to D
 ```
 
-Early algorithms apply this line of training and obtain satisfying results. For example, in Mb-Mf, the authors uses such direct training and obtain comparable results to model-free RL with less samples in low-dimensional cases.
+Early algorithms apply this line of training and obtain satisfying results. For example, in Mb-Mf, the authors use such direct training and obtain comparable results to model-free RL with less samples in low-dimensional cases.
 
 ### Model Uncertainty
 
-However, using a single transition model is often insufficient due to overfitting and model bias. Overfitting problems are common in supervised learning, which means that the neural network performs well on training data but poorly on test data. With MBRL, a new challege called "model bias" arises, in that policy optimization will exploit regions where the model is not sufficiently trained and leads to catastrophic failures. Consider the following example. An agent is trying to reach the edge of a cliff. The closer the agent is to the cliff, the less data is available to train the dynamics model, and therefore the less accurate the model is. Thus, if the agent relies solely on the model to plan its actions, it will fall off from the cliff constantly. 
+However, using a single transition model is often insufficient due to overfitting and model bias. Overfitting problems are common in supervised learning, which means that the neural network performs well on training data but poorly on test data. With MBRL, a new challenge called "model bias" arises, in that policy optimization will exploit regions where the model is not sufficiently trained and leads to catastrophic failures. Consider the following example. An agent is trying to reach the edge of a cliff. The closer the agent is to the cliff, the less data is available to train the dynamics model, and therefore the less accurate the model is. Thus, if the agent relies solely on the model to plan its actions, it will fall off from the cliff constantly. 
 
 This problem can be alleviated if we can express the model uncertainty in some way. When the agent is aware of its deficiency, it can perform less aggressive policy optimization to avoid exploiting the areas that the model is uncertain about. In the previous example, if the agent knows that it is uncertain around the cliff, then it can be more cautious and take smaller steps as it reaches closer to the cliff. Note that, different from the aleatoric or statistical uncertainty induced by the noise in the dataset, this model uncertainty is epistemic, resulting from model-overfitting and insufficient training.
 
 Another popular fix is to train an ensemble of models and evaluate their consistency. The similarity of the results given by different models can represent the model certainty. The more similar the results, the more accurate the prediction is, and therefore the more aggressive the policy can be.
 
 ME-TRPO replaces the single dynamics model with an ensemble of dynamics models and uses TRPO to capture the model uncertainty and update its policy accordingly. SLBO replaces the model learning objective in ME-TRPO of a multi-step prediction 
-$$L(s_{t:t+h},a_{t:t+h})=\frac{1}{H}\Sigma_H||(\hat{s}_{t+i}-\hat{s}_{t+i-1})-(s_{t+i}-s_{t+i-1})||_2$$.
-This strengthens the model's abality of making long-term predictions.
+$$L(s\_\{t:t+h\},a\_\{t:t+h\})=\frac{1}{H}\Sigma\_H||(\hat{s}\_\{t+i\}-\hat{s}\_\{t+i-1\})-(s\_\{t+i\}-s\_\{t+i-1\})||\_2$$.
+This strengthens the model's ability of making long-term predictions.
 
-Inspired by meta-policy training, MB-MPO tries to learn an adaptive policy that can quickly adapts to any of the models in the learned ensemble. As in typical meta-RL settings, the algorithm is divided into two parts, where the first one trains a general policy, and the second one performs a few policy updates to adapt the general policy into a specific environment (in this case, the environment given by a dynamics model). In MB-MPO, the general policy is trained via TRPO as in ME-TRPO, and the adaptive polices are trained with vanilla policy gradient. The potential benefit is that the policy is robust enough to ignore the model errors and can quickly adapt to real world scenarios.
+Inspired by meta-policy training, MB-MPO tries to learn an adaptive policy that can quickly adapt to any of the models in the learned ensemble. As in typical meta-RL settings, the algorithm is divided into two parts, where the first one trains a general policy, and the second one performs a few policy updates to adapt the general policy into a specific environment (in this case, the environment given by a dynamics model). In MB-MPO, the general policy is trained via TRPO as in ME-TRPO, and the adaptive polices are trained with vanilla policy gradient. The potential benefit is that the policy is robust enough to ignore the model errors and can quickly adapt to real world scenarios.
 
-While the above works use the dynamics model to generate full trajectories, MBPO only uses the dynamics model to augment existing data. Instead of training a policy inside of the learned model, it uses real world data with short model rollouts to improve its policy with off-policy model-free RL. In this way, MBPO avoids long-term prediction of the model and thus allievates the compounding model error.
+While the above works use the dynamics model to generate full trajectories, MBPO only uses the dynamics model to augment existing data. Instead of training a policy inside of the learned model, it uses real world data with short model rollouts to improve its policy with off-policy model-free RL. In this way, MBPO avoids long-term prediction of the model and thus alleviates the compounding model error.
 
 A recent work, however, proves that the model ensemble approach is valid only because it regularizes the Lipschitz condition of the value function through the generated samples. Therefore, MBRL algorithms with a single dynamics model and a regularized value function can outperform those with an ensemble of dynamics models.
 
 ### Variational Auto-Encoder and Latent Models
 
-To deal with high-dimensional inputs and partially observable environments, we can use variational auto-encoder models to extract the features of the states and express them in a simple latent space. The learned approximate posterior, also called encoder, can take in various forms, from the single-step encoder $q_\Phi(s_t \mid o_t)$ to the full smoothing posterior $q_\Phi(s_t, s_{t+1} \mid o_{1:T},a_{1:T})$. Empirically, the simplest encoder is sufficient.
+To deal with high-dimensional inputs and partially observable environments, we can use variational auto-encoder models to extract the features of the states and express them in a simple latent space. The learned approximate posterior, also called encoder, can take in various forms, from the single-step encoder $q\_\Phi(s\_t \mid o\_t)$ to the full smoothing posterior $q\_\Phi(s\_t, s\_\{t+1\} \mid o\_\{1:T\},a\_\{1:T\})$. Empirically, the simplest encoder is sufficient.
 
-Assume we have a deterministic encoder with the form $q_\Phi(s_t \mid o_t)$ that presents states as $s_t=g_\Phi(o_t)$, the loss of the world model can be expressed as follows, where the three terms correspond to latent space dynamics, image reconstruction, and reward model, respectively. $$\max_{\Phi,\Theta} \frac{1}{N}\Sigma_N\Sigma_T\log p_\Theta(g_\Phi(o_{t+1,i}) \mid g_\Phi(o_{t,i}),a_{t,i})+\log p_\Theta(o_{t,i} \mid g_\Phi(o_{t,i}))+\log p_\Theta (r_{t,i} \mid g_\Phi(o_{t,i}))$$
+Assume we have a deterministic encoder with the form $q\_\Phi(s\_t \mid o\_t)$ that presents states as $s\_t=g\_\Phi(o\_t)$, the loss of the world model can be expressed as follows, where the three terms correspond to latent space dynamics, image reconstruction, and reward model, respectively.
 
-Recent works often employ this approach. In VPN, the encoder is $f_\theta^{enc}(s_t \mid o_t)$, and the transition model is $f_\theta^{trans}(s_{t+1} \mid o_t,s_t)$. From the abstract state, the model has to predict the immediate reward and discount from $f_\theta^{out}(r_t,\gamma_t \mid o_t,s_t)$, and the value of the next abstract-state from $f_\theta^{value}(V_\theta(s_t) \mid s_t)$. With these models representative of the entire world, VPN uses a modified depth-first search algorithm to plan the optimal path. Other examples include SOLAR, MuZero, etc.
+$$\max\_\{\Phi,\Theta\} \frac{1}{N}\Sigma\_N\Sigma\_T\log p\_\Theta(g\_\Phi(o\_\{t+1,i\}) \mid g\_\Phi(o\_\{t,i\}),a\_\{t,i\})+\log p\_\Theta(o\_\{t,i\} \mid g\_\Phi(o\_\{t,i\}))+\log p\_\Theta (r\_\{t,i\} \mid g\_\Phi(o\_\{t,i\}))$$
 
-PlaNet improves the performance of the latent model via Recurrent State Space Model (RSSM). The state in RSSM is a combination of a hidden state $h_t$ and a posterior state $z_t$, where the former captures the time sequence with RNN, and the latter encodes the high-dimensional input into a latent representation. The RSSM thus consists of six parts: a recurrent model that generates the hidden states $h_t=f_\phi(h_{t-1},z_{t-1},a_{t-1})$, a representation model that encodes the observation and the hidden state into a posterior state $z_t \sim q_\phi(z_t \mid h_t,o_t)$, a transition model that predicts an approximate prior state based purely on hidden states 
-$$\hat{z}_t\sim p_\phi(\hat{z}_t \mid h_t)$$, 
+Recent works often employ this approach. In VPN, the encoder is $f\_\theta^{enc}(s\_t \mid o\_t)$, and the transition model is $f\_\theta^{trans}(s\_\{t+1\} \mid o\_t,s\_t)$. From the abstract state, the model has to predict the immediate reward and discount from $f\_\theta^{out}(r\_t,\gamma\_t \mid o\_t,s\_t)$, and the value of the next abstract-state from $f\_\theta^{value}(V\_\theta(s\_t) \mid s\_t)$. With these models representative of the entire world, VPN uses a modified depth-first search algorithm to plan the optimal path. Other examples include SOLAR, MuZero, etc.
+
+PlaNet improves the performance of the latent model via Recurrent State Space Model (RSSM). The state in RSSM is a combination of a hidden state $h\_t$ and a posterior state $z\_t$, where the former captures the time sequence with RNN, and the latter encodes the high-dimensional input into a latent representation. The RSSM thus consists of six parts: a recurrent model that generates the hidden states $h\_t=f\_\phi(h\_\{t-1\},z\_\{t-1\},a\_\{t-1\})$, a representation model that encodes the observation and the hidden state into a posterior state $z\_t \sim q\_\phi(z\_t \mid h\_t,o\_t)$, a transition model that predicts an approximate prior state based purely on hidden states 
+$$\hat{z}\_t\sim p\_\phi(\hat{z}\_t \mid h\_t)$$, 
 an image predictor that reconstruct the input observation 
-$$\hat{o}_t\sim p_\phi(\hat{o}_t \mid h_t,z_t)$$, 
+$$\hat{o}\_t\sim p\_\phi(\hat{o}\_t \mid h\_t,z\_t)$$, 
 a reward predictor that predicts the reward 
-$$\hat{r}_t\sim p_\phi(\hat{r}_t \mid h_t,z_t)$$, 
+$$\hat{r}\_t\sim p\_\phi(\hat{r}\_t \mid h\_t,z\_t)$$, 
 and a discount predictor that predicts the discount (i.e., whether the episode ends) 
-$$\hat{\gamma}_t\sim p_\phi(\hat{\gamma}_t \mid h_t,z_t)$$. 
+$\hat{\gamma}\_t \sim p\_\{\phi\}$.
 Later in Dreamer series, the latent space is further discretized to better present latent-space computations.
 
 ![Structure of the Recurrent State Space Model (RSSM)]({{ '/assets/images/2023-05-28/worldmodel.png' | relative_url }})
@@ -104,13 +107,13 @@ Recently, a surge of research tries to employ modern architectures to the model.
 
 ## Planning and Searching
 
-Given an accurate model, we can apply planning or searching algorithms as in typical control settings. Theoretically and empirically, this combination reaches super-human level results within a relative short period of training time. In this section, we will present three classic learning-free algorithms, namely, random shooting, Monte Carlo tree search, and linear quadratic relugator.
+Given an accurate model, we can apply planning or searching algorithms as in typical control settings. Theoretically and empirically, this combination reaches super-human level results within a relative short period of training time. In this section, we will present three classic learning-free algorithms, namely, random shooting, Monte Carlo tree search, and linear quadratic regulator.
 
 ### Random Shooting
 
-Random shooting is a method that is easy to implement, straight-forward and works well within low-dimension, short-horizon settings. It randomly generates K action sequences and then calculates the cumulative rewards of each action series based on the learned dynamics. When interacting with the environment, the agent chooses the action series with the highest predicted reward. In Mb-Mf, the authors employ the Model Predictive Control (MPC) as introduced in Section \ref{sec:transition}. 
+Random shooting is a method that is easy to implement, straight-forward and works well within low-dimension, short-horizon settings. It randomly generates K action sequences and then calculates the cumulative rewards of each action series based on the learned dynamics. When interacting with the environment, the agent chooses the action series with the highest predicted reward. In Mb-Mf, the authors employ the Model Predictive Control (MPC) as introduced in the Transition Model section. 
 
-To improve its performance, instead of randomly generating actions, the model selects actions that may result in higher rewards. A common approch is Cross Entropy Method (CEM) that iteratively fits a Gaussian distribution of the most promising actions and then samples from the distribution, as depicted in Algo\ref{alg:cem}. PETS, POPLIN, and PlaNet adopts such method. In POPLIN, the authors find that differently executed CEM can lead to different performance, and the best place to add the Gaussian noise is in the parameter space.
+To improve its performance, instead of randomly generating actions, the model selects actions that may result in higher rewards. A common approach is Cross Entropy Method (CEM) that iteratively fits a Gaussian distribution of the most promising actions and then samples from the distribution, as depicted in the algorithm below. PETS, POPLIN, and PlaNet adopts such method. In POPLIN, the authors find that differently executed CEM can lead to different performance, and the best place to add the Gaussian noise is in the parameter space.
 
 ```text
 while in action optimization:

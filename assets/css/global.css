@@ -81,6 +81,30 @@ h1, h2, h3, h4, h5, h6,
     white-space: nowrap;
 }
 
+/* Long math equations: horizontal scroll to prevent overflow */
+.katex-display {
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0.5em 0;
+}
+
+/* Images in blog/research posts fit within container */
+article.card img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Research highlights preview images */
+.research-preview-img {
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+}
+
+.research-preview-placeholder {
+    aspect-ratio: 3 / 2;
+    background-color: #e9ecef;
+}
+
 .cover-image {
     width: 180px;
     max-height: 120px;
