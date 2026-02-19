@@ -1,0 +1,11 @@
+{% comment %}
+  Usage:
+  {% include widgets/figure.html num=1 src="/assets/images/path/to/image.png" caption="Your caption with *italics* and \( \sigma_1 \) math." alt="Short description" %}
+  Optional: caption (supports Markdown and inline math \( ... \))
+{% endcomment %}
+<figure class="article-figure">
+  <img src="{{ include.src | relative_url }}" alt="{{ include.alt | default: include.caption | strip_html }}" loading="lazy" />
+  {% if include.caption %}
+  <figcaption><strong>Figure {{ include.num }}.</strong> {{ include.caption | markdownify | replace: '<p>', '' | replace: '</p>', '' }}</figcaption>
+  {% endif %}
+</figure>

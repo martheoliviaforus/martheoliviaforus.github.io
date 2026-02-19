@@ -81,17 +81,59 @@ h1, h2, h3, h4, h5, h6,
     white-space: nowrap;
 }
 
-/* Long math equations: horizontal scroll to prevent overflow */
 .katex-display {
-    overflow-x: auto;
-    overflow-y: hidden;
     padding: 0.5em 0;
+}
+
+/* Research/blog post body: Georgia-style font, 18px */
+article.card {
+    font-family: Charter, "Bitstream Charter", Georgia, serif;
+    font-size: 16px;
+    font-style: normal;
+}
+
+/* Line after headers in research posts (all sizes) */
+article.card h1,
+article.card h2,
+article.card h3,
+article.card h4,
+article.card h5,
+article.card h6 {
+    margin-top: 1.5em;
+    padding-bottom: 0.75em;
+    margin-bottom: 0.5em;
+    border-bottom: 1px solid #dee2e6;
 }
 
 /* Images in blog/research posts fit within container */
 article.card img {
     max-width: 100%;
     height: auto;
+}
+
+/* Figure with caption (e.g. "Figure 1." + description) */
+article.card figure.article-figure {
+    margin: 1.5em 0;
+    padding: 1.25em 0;
+    border-top: 1px solid #dee2e6;
+    border-bottom: 1px solid #dee2e6;
+}
+
+article.card figure.article-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+article.card figure.article-figure figcaption {
+    margin-top: 0.5em;
+    font-size: 0.95em;
+    color: #495057;
+    line-height: 1.5;
+}
+
+article.card figure.article-figure figcaption strong:first-child {
+    margin-right: 0.25em;
 }
 
 /* Research highlights preview images */

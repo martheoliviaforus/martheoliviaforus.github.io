@@ -87,7 +87,6 @@ To deal with high-dimensional inputs and partially observable environments, we c
 
 Assume we have a deterministic encoder with the form $q\_\Phi(s\_t \mid o\_t)$ that presents states as $s\_t=g\_\Phi(o\_t)$, the loss of the world model can be expressed as follows, where the three terms correspond to latent space dynamics, image reconstruction, and reward model, respectively.
 
-$$\max\_\{\Phi,\Theta\} \frac{1}{N}\Sigma\_N\Sigma\_T\log p\_\Theta(g\_\Phi(o\_\{t+1,i\}) \mid g\_\Phi(o\_\{t,i\}),a\_\{t,i\})+\log p\_\Theta(o\_\{t,i\} \mid g\_\Phi(o\_\{t,i\}))+\log p\_\Theta (r\_\{t,i\} \mid g\_\Phi(o\_\{t,i\}))$$
 
 Recent works often employ this approach. In VPN, the encoder is $f\_\theta^{enc}(s\_t \mid o\_t)$, and the transition model is $f\_\theta^{trans}(s\_\{t+1\} \mid o\_t,s\_t)$. From the abstract state, the model has to predict the immediate reward and discount from $f\_\theta^{out}(r\_t,\gamma\_t \mid o\_t,s\_t)$, and the value of the next abstract-state from $f\_\theta^{value}(V\_\theta(s\_t) \mid s\_t)$. With these models representative of the entire world, VPN uses a modified depth-first search algorithm to plan the optimal path. Other examples include SOLAR, MuZero, etc.
 
