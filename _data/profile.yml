@@ -77,7 +77,7 @@ education:
     logo: /assets/images/badges/UiO_logo.png
     position: B.Sc. Mathematics
     date: Aug. 2019 - Jun. 2023
-    place: Oslo, Norway
+    place: Oslo, NO
 
 experience:
   - name: University of Michigan
@@ -86,6 +86,19 @@ experience:
       Student Ambassador
     date: Jan. 2026 - Present
     place: Ann Arbor, MI
+  - name: Colliers
+    logo: /assets/images/badges/colliers.jpg
+    position: >-
+      Capital Markets Intern
+    date: Jun 2022 - Aug 2022
+    place: Olso, NO
+  - name: Human Capital Group
+    logo: /assets/images/badges/human_capital.png
+    position: >-
+      Marketing Assistant Intern
+    date: Jun. 2021 - Aug. 2021
+    place: Stockholm, SE
+
   # - name: Digital Healthcare Lab
   #   logo: /assets/images/badges/Yonsei.png
   #   position: >-
