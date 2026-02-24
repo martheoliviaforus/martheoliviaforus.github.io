@@ -8,7 +8,7 @@ tags:
 intro: A useful view of a covariance matrix that is a natural generalization of variance to higher dimensions.
 ---
 
-When $X$ is a random scalar, we call $\mathbb{V}[X]$ the _variance_ of the $X$, and define it as the average square distance from the mean:
+When $X$ is a random scalar, we refer to $\mathbb{V}[X]$ as the _variance_ of $X$, defining it as the expected squared distance from the mean:
 
 $$
 \begin{equation}
@@ -16,9 +16,9 @@ $$
 \end{equation}
 $$
 
-The mean $\mathbb{E}[X]$ is a measure of the _central tendency_ of $X$, while the variance $\mathbb{V}[X]$ is a measure of the _dispersion_ about this mean. Both metrics are moments of the distribution.
+The mean $\mathbb{E}[X]$ describes the _central tendency_ of $X$, whereas the variance $\mathbb{V}[X]$ quantifies the _dispersion_ around this mean. Both are moments of the distribution.
 
-However, when $\textbf{X}$ is a _random vector_ or an ordered list of random scalars
+However, when $\mathbf{X}$ is a _random vector_—that is, an ordered list of random scalars,
 
 $$
 \begin{equation}
@@ -31,7 +31,7 @@ X_n
 \end{equation}
 $$
 
-then, at least in my experience, people do not talk about the variance of $\textbf{X}$; rather, they talk about the _covariance matrix_ of $\textbf{X}$, denoted $\text{cov}(\textbf{X})$
+people, at least in my experience, tend not to speak of the variance of $\mathbf{X}$ as such; instead, they refer to the _covariance matrix_ of $\mathbf{X}$, denoted $\text{cov}(\mathbf{X})$:
 
 $$
 \begin{equation}
@@ -39,54 +39,55 @@ $$
 \end{equation}
 $$
 
-Now Equations $1$ and $3$ look quite similar, and I think it is natural to eventually ask: is a covariance matrix just a _high_- or _multi-dimensional variance_ of $\mathbf{X}$? Does this notation make sense?
+Equations $1$ and $3$ now appear rather similar, leading naturally to the question: is the covariance matrix simply a _higher- or multi-dimensional variance_ of $\mathbf{X}$? Does writing
 
 $$
 \begin{equation}
-    \mathbb{V}[\mathbf{X}]:=\text{cov}[\mathbb{X}].
+    \mathbb{V}[\mathbf{X}]:=\text{cov}[\mathbf{X}]
 \end{equation}
 $$
 
-Of course, this is not my idea, but this was not hot I was taught to think about covariance matrices. But I think it is an interesting connection. So let's explore this idea that a covariance matrix is just high-dimensional variance.
+make sense?
+
+Of course, this perspective is not original to me; it was not the way I was initially taught to think about covariance matrices. Nevertheless, I find the connection insightful. Let us therefore explore the idea that a covariance matrix is simply a high-dimensional generalisation of variance.
 
 #### Definitions
 
-To start, it is clear from definitions that a covariance matrix is related variance. We can write the outer product in Equation $3$ explicitly as the following:
+From the definitions, it is evident that the covariance matrix is intimately related to variance. We can write the outer product in Equation $3$ explicitly as follows:
 
 $$
 \begin{equation}
-X=\begin{bmatrix}
-    \mathbb{E}[(\mathbf{X}_1-\mathbb{E}[\mathbf{X}_1])(\mathbf{X}_1-\mathbb{E}[\mathbf{X}_1])]&\ldots &\mathbb{E}[(\mathbf{X}_n-\mathbb{E}[\mathbf{X}_n])(\mathbf{X}_n-\mathbb{E}[\mathbf{X}_n])]\\
-    \vdots &\ddots &\vdots\\
-    \mathbb{E}[(\mathbf{X}_n-\mathbb{E}[\mathbf{X}_n])(\mathbf{X}_1-\mathbb{E}[\mathbf{X}_1])]&\ldots& \mathbb{E}[(\mathbf{X}_n-\mathbb{E}[\mathbf{X}_n])(\mathbf{X}_n-\mathbb{E}[\mathbf{X}_n])]\\
+\Sigma=\begin{bmatrix}
+    \mathbb{E}[(X_1-\mathbb{E}[X_1])^2] & \ldots & \mathbb{E}[(X_1-\mathbb{E}[X_1])(X_n-\mathbb{E}[X_n])]\\
+    \vdots & \ddots & \vdots\\
+    \mathbb{E}[(X_n-\mathbb{E}[X_n])(X_1-\mathbb{E}[X_1])] & \ldots& \mathbb{E}[(X_n-\mathbb{E}[X_n])^2]\\
 \end{bmatrix},
 \end{equation}
 $$
 
-Clearly the diagonal element in $\Sigma$ are the variances of the scalars $X_i$. So
-$\text{cov}[\mathbb{X}]$ still capture the dispersion of each $X_i$.
+Clearly, the diagonal elements of $\Sigma$ are the variances of the scalar components $X_i$, so $\text{cov}[\mathbf{X}]$ still reflects the dispersion of each $X_i$.
 
-But what are the cross-terms? These are the _covariances_ of the pairwise combinations of $X_i$ and $X_j$, defined as
-
-$$
-\begin{equation}
-    \sigma_{ij}:=\text{cov}\left(X_i,X_j\right)=\mathbb{E}\left[(X_i-\mathbb{E}[X_i])(X_j-\mathbb{E}[X_j])\right].
-\end{equation}
-$$
-
-An obvious observation is that Equation $6$ is a genealisation of Equation $1$. Thus, variance $(i=j)$ is the simply a special case of covariance:
+What, then, are the off-diagonal entries? These are the _covariances_ between pairs $X_i$ and $X_j$, defined as
 
 $$
 \begin{equation}
-    \mathbb{E}[X_i]=\text{cov}(X_i,X_i).
+    \sigma_{ij}:=\text{cov}\left(X_i, X_j\right)=\mathbb{E}\left[(X_i-\mathbb{E}[X_i])(X_j-\mathbb{E}[X_j])\right].
 \end{equation}
 $$
 
-Furthermore, we can see that $\sigma_{ij}$ is not just a function of univariate variance of each random variable; it is also a function of whether the two variances are correlated with the other. As a simple thought experiment, imagine that $X_i$ and $X_j$ both had high variances but were uncorrelated with each other, meaning that there was no relationship between large (small) values of $X_i$ and large (small) value of $X_j$. Then we would still expect $\sigma_{ij}$ to be small (Figure $1$).
+It is clear that Equation $6$ generalises Equation $1$, with the variance case being the special instance $i = j$:
 
-{% include widgets/figure.html num=1 src="/assets/images/2025-12-28/covariance.png" alt="Covariance scatter plots" caption="Empirical distributions of two random variables $X_1$ and $X_2$. Each subplot is labeled with three numbers representing $\sigma_1,\sigma_2$, and $\sigma_{12}$ respectively. (Black subplots) $X_1$ and $X_2$ are negatively correlated with Pearson correlation coefficient $\rho=-0.7$. (Blue subplots) $X_1$ and $X_2$ are uncorrelated. (Green subplots) $X_1$ and $X_2$ are positively correlated $(\rho=0.7)$." %}
+$$
+\begin{equation}
+    \mathbb{V}[X_i]=\text{cov}(X_i, X_i).
+\end{equation}
+$$
 
-This is the intuitive reason that $\sigma_{ij}$ can be written in terms of the \*Pearson correlation coefficient $\rho_{ij}$
+Moreover, $\sigma_{ij}$ is affected not only by the univariate variances of the two variables but also by how much those variables are correlated with one another. For example, suppose $X_i$ and $X_j$ both exhibit high variance, but are uncorrelated—that is, there is no statistical relationship between large (or small) values of $X_i$ and those of $X_j$. In that case, we would expect $\sigma_{ij}$ to be small (as shown in Figure $1$).
+
+{% include widgets/figure.html num=1 src="/assets/images/2025-12-28/covariance.png" alt="Covariance scatter plots" caption="Empirical distributions of two random variables $X_1$ and $X_2$. Each subplot is labelled with three numbers representing $\sigma_1,\sigma_2$, and $\sigma_{12}$ respectively. (Black subplots) $X_1$ and $X_2$ are negatively correlated with Pearson correlation coefficient $\rho=-0.7$. (Blue subplots) $X_1$ and $X_2$ are uncorrelated. (Green subplots) $X_1$ and $X_2$ are positively correlated $(\rho=0.7)$." %}
+
+This intuitive argument is why $\sigma_{ij}$ can be written in terms of the Pearson correlation coefficient, $\rho_{ij}$:
 
 $$
 \begin{equation}
@@ -94,23 +95,23 @@ $$
 \end{equation}
 $$
 
-Again, the generalises Equation $1$ but with $\rho_{ij}=1$.
+This again generalises Equation $1$, with $\rho_{ij}=1$ in the variance case.
 
-Using the $\sigma_{ij}$ notation from Equation $8$ we can rewrite the covariance matrix as
+Using the $\sigma_{ij}$ notation from Equation $8$, we can rewrite the covariance matrix as
 
 $$
 \begin{equation}
     \Sigma=
     \begin{bmatrix}
-        \sigma_1^2 & \rho_{12}\sigma_1\sigma_2 & \ldots & \rho_{1n}\sigma_1\sigma_n \\
-        \rho_{21}\sigma_2\sigma_2 & \sigma_2^2 & \ldots & \rho_{2n}\sigma_2\sigma_n \\
-        \vdots & \ddots & \ldots &  \vdots \\
-        \rho_{n1}\sigma_n\sigma_1 & \rho_{n2}\sigma_2\sigma_n & \ldots & \sigma_n^2\\
+        \sigma_1^2 & \rho_{12}\sigma_1\sigma_2 & \cdots & \rho_{1n}\sigma_1\sigma_n \\
+        \rho_{21}\sigma_2\sigma_1 & \sigma_2^2 & \cdots & \rho_{2n}\sigma_2\sigma_n \\
+        \vdots & \ddots & \cdots &  \vdots \\
+        \rho_{n1}\sigma_n\sigma_1 & \rho_{n2}\sigma_n\sigma_2 & \cdots & \sigma_n^2\\
     \end{bmatrix}.
 \end{equation}
 $$
 
-And with a little algebra, we can decompose the matrix in Equation $9$ into a form that looks very similar to a multi-dimensional Equation $8$.
+A little algebra allows us to decompose the matrix in Equation $9$ as follows, resembling a multi-dimensional generalisation:
 
 $$
 \begin{equation}
@@ -136,7 +137,7 @@ $$
 \end{equation}
 $$
 
-The middle matrix is _correlation matrix_, which captures the Pearson (linear) correlation between all the variables in $\mathbf{X}$. So a covariance matrix of $\mathbf{X}$ captures both the dispersion of each $X_i$ and how it covaries with other random variables. If we think of scalar variance as a univariate covariance matrix, then one-dimensional case can be written as
+The central matrix is the _correlation matrix_, encoding the Pearson (linear) correlations between each pair of variables in $\mathbf{X}$. Thus, the covariance matrix of $\mathbf{X}$ captures both the individual dispersions of the $X_i$ and their covariances with the other variables. If we regard scalar variance as a univariate covariance matrix, the one-dimensional case may be written as
 
 $$
 \begin{equation}
@@ -144,9 +145,9 @@ $$
 \end{equation}
 $$
 
-Equation $11$ is not useful from a practical point of view, but in my mind, it underscores the view that univariate variance is a special case of covariance (matrices).
+While Equation $11$ is of little practical use, it emphasises the idea that univariate variance is simply a special case of covariance matrices.
 
-Finally, note that Equation $10$ gives us a useful way to compute the correlation matrix $\mathbf{C}$ from the covariance matrix $\Sigma$. It is
+Equation $10$ also provides a straightforward method for deriving the correlation matrix $\mathbf{C}$ from the covariance matrix $\Sigma$:
 
 $$
 \begin{equation}
@@ -165,11 +166,11 @@ $$
 \end{equation}
 $$
 
-This is because the inverse of a diagonal matrix is simply the reciprocal of each element along the diagonal.
+This holds because the inverse of a diagonal matrix consists of the reciprocal of each diagonal entry.
 
 #### Properties
 
-Some important properties of univariate variance have multidimensional analogs. For example, let $a$ be a non-random number. Recall that the variance of $aX$ scales with $a^2$ or that
+Many important properties of univariate variance have direct analogues in multiple dimensions. For instance, if $a$ is a non-random scalar, recall that the variance of $aX$ scales by $a^2$:
 
 $$
 \begin{equation}
@@ -177,22 +178,22 @@ $$
 \end{equation}
 $$
 
-And in the general case, $a$ is a non-random matrix $\mathbf{A}$ and
+In the general case, with a non-random matrix $\mathbf{A}$,
 
 $$
 \begin{equation}
 \begin{aligned}
-    \mathbb{V}[\mathbf{AX}]&=\mathbf{A}^\top\Sigma\mathbf{A} \\
-                         &=\mathbb{E}\left[(\mathbf{AX}-\mathbb{E}[\mathbf{AX}])(\mathbf{AX}-\mathbb{E}[\mathbf{AX}])^\top\right]\\
+    \mathbb{V}[\mathbf{A}\mathbf{X}]&=\mathbf{A}\Sigma\mathbf{A}^\top \\
+                         &=\mathbb{E}\left[(\mathbf{A}\mathbf{X}-\mathbb{E}[\mathbf{A}\mathbf{X}])(\mathbf{A}\mathbf{X}-\mathbb{E}[\mathbf{A}\mathbf{X}])^\top\right]\\
                          &=\mathbf{A}\mathbb{E}\left[(\mathbf{X}-\mathbb{E}[\mathbf{X}])(\mathbf{X}-\mathbb{E}[\mathbf{X}])^\top\right]\mathbf{A}^\top \\
                          &=\mathbf{A}\Sigma\mathbf{A}^\top
 \end{aligned}
 \end{equation}
 $$
 
-So both $\mathbb{V}[\mathbf{X}]$ and $\mathbb{V}[\mathbf{X}]$ are quadratic with respect to multiplicative constants!
+Thus, both $\mathbb{V}[\mathbf{X}]$ and its multivariate transformations are quadratic in multiplicative constants.
 
-As a second example, recall that the univariate variance of $a+X$ is just variance of $X$:
+As another example, recall that the univariate variance of $a+X$ is simply the variance of $X$:
 
 $$
 \begin{equation}
@@ -200,7 +201,7 @@ $$
 \end{equation}
 $$
 
-This is intuitive. A constant shift in the distribution does not change its dispersion. And again, in the general case, a constant shift in a multivariate distribution does not change its dispersion:
+Clearly, shifting a distribution by a constant does not affect its dispersion. In the multivariate case, a constant shift similarly leaves the covariance unchanged:
 
 $$
 \begin{equation}
@@ -212,15 +213,15 @@ $$
 \end{equation}
 $$
 
-Finally, a standard decomposition of variance is to write it as
+Further, variance has a standard decomposition:
 
 $$
 \begin{equation}
-    \mathbb{E}[X]=\mathbb{E}\left[X^2\right]-\mathbb{E}[X]^2
+    \mathbb{V}[X]=\mathbb{E}\left[X^2\right]-\mathbb{E}[X]^2
 \end{equation}
 $$
 
-And this standard decomposition has a multi-dimensional analog:
+The analogous result for vectors is
 
 $$
 \begin{equation}
@@ -232,12 +233,11 @@ $$
 \end{equation}
 $$
 
-Regardless, my point isnot to provide detailed or comprehensive proofs, but only to underscore that covariance matrices have properties that indicate they are simply high-dimensional (co)variances.
+My aim here is not to provide exhaustive proofs, but rather to highlight that the covariance matrix retains properties analogous to 'variance', but in higher dimensions.
 
 #### Non-negativity
 
-Another neat connection is that covariance matrices are **positive semi-definite** (PSD), which I'll
-denote with
+A further illuminating connection is that covariance matrices are **positive semi-definite** (PSD):
 
 $$
 \begin{equation}
@@ -245,7 +245,7 @@ $$
 \end{equation}
 $$
 
-while univariate variance are non-negative number:
+whilst univariate variances are non-negative numbers:
 
 $$
 \begin{equation}
@@ -253,7 +253,7 @@ $$
 \end{equation}
 $$
 
-In this view, the _Cholesky decomposition_ of a PSD matrix is simply a high-dimensional square root! So the Cholesky factor $\mathbf{L}$ can be viewed as the high-dimensional standard deviation of $X$, since
+Accordingly, the _Cholesky decomposition_ of a PSD matrix is a natural generalisation of the scalar square root. The Cholesky factor $\mathbf{L}$ thus plays the role of a multi-dimensional standard deviation, since
 
 $$
 \begin{equation}
@@ -261,11 +261,11 @@ $$
 \end{equation}
 $$
 
-Here, I am abusing notation to use $\approx$ to mean "analogous to".
+Here, ‘$\approx$’ is used to indicate analogy.
 
 #### Precision and whitening
 
-The precision of a scalar random variable is the reciprocal of its variance:
+The precision of a scalar random variable is simply the inverse of its variance:
 
 $$
 \begin{equation}
@@ -273,7 +273,7 @@ $$
 \end{equation}
 $$
 
-Hopefully the name is somewhat intuitive. When a random variable has high precision, this means it has low variance and thus a smaller range of possible outcomes. A common place that precision arises is when _whitening_ data, or standardising it to have zero mean and unit variance. We can do this by subtracting the mean $X$ and then dividing it by it standard deviation:
+The intuition is that higher precision corresponds to lower variance, i.e. less spread in possible outcomes. Precision naturally arises when ‘whitening’ data, which involves standardising it to have zero mean and unit variance. This is achieved by subtracting the mean and dividing by the standard deviation:
 
 $$
 \begin{equation}
@@ -281,9 +281,9 @@ $$
 \end{equation}
 $$
 
-This is sometimes referred to as _z-scoring_.
+This is sometimes called _z-scoring_.
 
-What's the multivariate analog to this? We can define the precision matrix $\mathbf{P}$ as the inverse of the covariance matrix or
+What is the multivariate counterpart? Here, the precision matrix $\mathbf{P}$ is defined as the inverse of the covariance matrix:
 
 $$
 \begin{equation}
@@ -291,7 +291,7 @@ $$
 \end{equation}
 $$
 
-Given the Colesky decomposition in Equation $21$ above, we can compute the Cholesky factor of the precision matrix as:
+Given the Cholesky decomposition in Equation $21$, the Cholesky factor of the precision matrix can be written as
 
 $$
 \begin{equation}
@@ -303,7 +303,7 @@ $$
 \end{equation}
 $$
 
-So the multivariate analog to Equation $$ is
+Thus, the multivariate analogue of the ‘z-score’ is
 
 $$
 \begin{equation}
@@ -311,17 +311,17 @@ $$
 \end{equation}
 $$
 
-The geometric or visual effect of this operation is to apply a linear transformation (rotation) of our data (samples of the random vector) with covariance matrix $\Sigma$ into a new set of variables with an identity covariance matrix (Figure $2$).
+Geometrically, this operation linearly transforms (rotates) the data—i.e., samples of the random vector with covariance $\Sigma$—into a new set of variables whose covariance is the identity matrix (see Figure $2$).
 
 {% include widgets/figure.html num=2 src="/assets/images/2025-12-28/whitening.png" alt="whitening" caption="(Left) Samples of a random variable $X$ with variances $\sigma_1=1.5$ and $\sigma_2=0.5$ and correlation $\rho=0.5$. (Right) Samples rotated by the Cholesky factor of the known covariance matrix, as in Equation $26$. The effect is that the rotated samples are uncorrelated with unit variance." %}
 
-Ignoring the mean, we can easily verify this transformation works:
+Ignoring the mean for simplicity, we can readily verify this transformation:
 
 $$
 \begin{equation}
 \begin{aligned}
 \mathbb{V}[Z]&=\mathbb{E}\left[\left(\mathbf{L}^{-1}\mathbf{X}\right)\left(\mathbf{L}^{-1}\mathbf{X}\right)^\top\right]\\
-        &=\mathbb{E}\left[\mathbf{L}^\top\mathbf{X}\mathbf{X}^\top\left(\mathbf{L}^{-1}\right)^\top\right]\\
+        &=\mathbb{E}\left[\mathbf{L}^{-1}\mathbf{X}\mathbf{X}^\top\left(\mathbf{L}^{-1}\right)^\top\right]\\
         &=\mathbf{L}^{-1}\mathbb{E}\left[\mathbf{X}\mathbf{X}^\top\right]\left(\mathbf{L}^{-1}\right)^\top\\
         &=\mathbf{L}^{-1}\Sigma\left(\mathbf{L}^\top\right)^{-1}\\
         &=\mathbf{I}\\
@@ -329,13 +329,13 @@ $$
 \end{equation}
 $$
 
-This derivation is a little more tedious with a mean, but hopefully the idea is clear. _Why_ the Cholesky decomposition actually works is a deeper idea, one worth its own post, but I think the essential ideas are also captured in **principal component analysis** (PCA).
+Including the mean makes the derivation marginally more involved, but the main idea remains the same. While a full explanation of why the Cholesky decomposition works warrants a separate discussion, some important ideas are also encapsulated in **principal component analysis** (PCA).
 
-#### Summary statistic
+#### Summary statistics
 
-It would be useful to summarise the information in a covariance matrix with a single number. To my knowledge, there are at least two such summary statistic that capture different types of information.
+It is often desirable to summarise the information in a covariance matrix with a single number. To my knowledge, there are at least two common summary statistics of this kind, each reflecting different aspects.
 
-**Total variance.** The _total variance_ of a random vector $\mathbf{X}$ is the trace of its covariance matrix or
+**Total variance.** The _total variance_ of a random vector $\mathbf{X}$ is given by the trace of its covariance matrix:
 
 $$
 \begin{equation}
@@ -343,9 +343,9 @@ $$
 \end{equation}
 $$
 
-We can see that variance is a scalar that summarises the variance across the components of $\mathbf{X}$. The concept is used in PCA, where total variance is preserved across the transformation. Of course, in the-dimensional case, total variance is simply variance, $\sigma_{\text{tv}}^2=\sigma^2$.
+This number summarises the total variance across all components of $\mathbf{X}$. The concept is important in PCA, where total variance is preserved through the transformation. Of course, in the one-dimensional case, total variance just reduces to the usual variance, that is, $\sigma_{\text{tv}}^2=\sigma^2$.
 
-**Generlised variance.** The generalised variance ([Wilks, 1932](URL)) of a random vector $\mathbf{X}$ is the determinant of its covariance matrix or
+**Generalised variance.** The _generalised variance_ ([Wilks, 1932](URL)) of a random vector $\mathbf{X}$ is defined as the determinant of its covariance matrix:
 
 $$
 \begin{equation}
@@ -353,7 +353,7 @@ $$
 \end{equation}
 $$
 
-There are nice [geometric](https://www.youtube.com/watch?v=Ip3X9LOh2dk) [interpretations]() of the determinant, but prehaps the simplest way to think about it here is that the determinant is equal to the product of the eigenvalues of $\Sigma$ or
+The determinant has compelling [geometric](https://www.youtube.com/watch?v=Ip3X9LOh2dk) [interpretations](), but, for our purposes, the simplest way to understand it here is as the product of the eigenvalues of $\Sigma$:
 
 $$
 \begin{equation}
@@ -361,11 +361,9 @@ $$
 \end{equation}
 $$
 
-So we can think of generalised variance as capturing the magnitude of the linear
-transformation represented by $\Sigma$.
+Thus, the generalised variance reflects the overall magnitude of the linear transformation encapsulated by $\Sigma$.
 
-Generalised variance is quite different from total variance. For example, consider the
-two-dimensional covariance matrix implied by the following values:
+Generalised variance differs sharply from total variance. For example, consider a two-dimensional covariance matrix in which
 
 $$
 \begin{equation}
@@ -373,13 +371,13 @@ $$
 \end{equation}
 $$
 
-Clearly, the total variance is two, while the determinant is one. Now imagine that the variables are highly correlated, that $\rho=0.98$. Then the total variance is still $2$, but the matrix becomes "more singular" (it is roughly $0.039$). So total variance, as its name suggests, really just summarises the dipersion in $\Sigma$, while generalised variance also captures how the variables in $\mathbf{X}$ covary. When the variable in $\mathbf{X}$ are highly (un-) correlated, generalised variance will be low (high).
+Here, the total variance is two, while the determinant is one. If, instead, the variables are highly correlated, say with $\rho=0.98$, then the total variance remains two, but the determinant drops to about $0.039$, indicating near-singularity. Thus, total variance simply describes the overall spread in $\Sigma$, whilst the generalised variance captures how variables in $\mathbf{X}$ co-vary; when these variables are highly (un)correlated, the generalised variance becomes low (or high).
 
 #### Example
 
-Let's end with two interesting examples that use the ideas in this post.
+Let us end with two examples illustrating these ideas.
 
-**Multivariate normal.** First, recall that the probabiliy density function (PDF) for a standard normal random variable is
+**Multivariate normal.** First, recall the probability density function (PDF) for a standard normal random variable:
 
 $$
 \begin{equation}
@@ -387,7 +385,7 @@ $$
 \end{equation}
 $$
 
-We can immediately see that the squared term is just the square of Equation $23$. Now armed the interpretation that a covariance matrix is high-dimensional variance, consider the PDF for a multivariate normal random variable:
+We immediately see that the squared term is simply the square from Equation $23$. Now, viewing the covariance matrix as a high-dimensional variance, the PDF for a multivariate normal random variable becomes
 
 $$
 \begin{equation}
@@ -395,7 +393,7 @@ $$
 \end{equation}
 $$
 
-We can see that the [Mahalanobis distance](https://en.wikipedia.org/wiki/Mahalanobis_distance) is a multivariate whitening. And the variance is the normalising term,
+Here, the [Mahalanobis distance](https://en.wikipedia.org/wiki/Mahalanobis_distance) serves as a multivariate analogue to the whitening transformation, and the variance (the normalising constant)
 
 $$
 \begin{equation}
@@ -403,9 +401,9 @@ $$
 \end{equation}
 $$
 
-has a multivariate analog that is generalised variance above.
+has a multivariate form as the generalised variance.
 
-**Correlated random variables.** Consider a scalar random variable $Z$ with unit variance, $\mathbb{V}[Z]=1$. We can transform this into a random variable $X$ with variance $\sigma^2$ by multiplying $Z$ by $\sigma$:
+**Correlated random variables.** Consider a scalar random variable $Z$ with unit variance, i.e. $\mathbb{V}[Z]=1$. Multiplying $Z$ by $\sigma$ yields a random variable $X$ with variance $\sigma^2$:
 
 $$
 \begin{equation}
@@ -413,7 +411,7 @@ $$
 \end{equation}
 $$
 
-What is the mutli-dimensional version of this? If we have two random variables
+How does this extend to higher dimensions? Suppose we have two independent random variables
 
 $$
 \begin{equation}
@@ -425,9 +423,9 @@ $$
 \end{equation}
 $$
 
-how can we transform them into a random variable $\mathbf{X}$ with covariance matrix $\Sigma$? Clearly, we multiply $\mathbf{Z}$ by the Cholesky factor, a la Equation $26$.
+and we wish to transform them into a random vector $\mathbf{X}$ with a specified covariance matrix $\Sigma$. The standard method is to multiply $\mathbf{Z}$ by the Cholesky factor as in Equation $26$.
 
-What this suggest, however, is a generic algorithm for generating correlated random variable: we multiply $\mathbf{Z}$ by the Cholesky factor of the covariance matrix when $\sigma_1=\ldots=\sigma_n=1$. In the two-by-two case, that's
+This leads to a general algorithm for constructing correlated random variables: generate $\mathbf{Z}$ with independent unit variances, and multiply by the Cholesky factor of the desired covariance matrix. In the $2\times2$ case,
 
 $$
 \begin{equation}
@@ -435,19 +433,19 @@ $$
 \end{equation}
 $$
 
-This suggest that an algorithm: draw two i.i.d random variables $Z_1$ and $Z_2$ both with unit variance. The set
+Thus, the algorithm is: draw two independent (i.i.d.) random variables $Z_1$ and $Z_2$, each with unit variance, and set
 
 $$
 \begin{equation}
 \begin{aligned}
     X_1&:=Z_1\\
-    X_1&:=Z_1\rho+Z_2\sqrt{1-\rho^2}\\
+    X_2&:=Z_1\rho+Z_2\sqrt{1-\rho^2}\\
 \end{aligned}
 \end{equation}
 $$
 
-Of course, this is nice because it can be vectorized and extends to an arbitrary number of random variables. And we can easily account for non-unit variances if we could like.
+This procedure conveniently generalises to any dimensionality, and non-unit variances can also be accommodated as required.
 
 #### Conclusion
 
-With the proper framing, it is fairly natural to think of $\Sigma$ as simply variance and to denote it as $\mathbb{V}[\mathbf{X}$. This framing is useful because makes certain properties of covariance matrices almost obvious, such as why they are positive semi-definiteness or why their inverses appear when whitening data. However, high-dimensional variance has properities that are not important in one-dimension, such as the correlation between the variables in $\mathbf{X}$. Thus in my mind, the best framing is that univeriate variance is really a special case of covariance matrices. However, in my mind, either reframing is useful for gaining a deeper intuition for the material.
+With the appropriate perspective, it is quite natural to interpret $\Sigma$ simply as ‘variance’, denoted $\mathbb{V}[\mathbf{X}]$. This view is beneficial as it renders certain properties of covariance matrices nearly self-evident, such as their positive semi-definiteness or the appearance of their inverses in whitening transformations. However, high-dimensional variance also possesses properties that are not relevant in the univariate case, such as the correlations between different variables in $\mathbf{X}$. In my opinion, the most fruitful framing is to regard univariate variance as merely a special case of covariance matrices; nevertheless, either perspective aids in developing a deeper intuition for the subject.
