@@ -5,6 +5,7 @@ layout: blog
 cover: /assets/images/2025-12-28/whitening.png
 tags:
   - Linear Algebra
+  - Probability and Statistics
 intro: A useful view of a covariance matrix that is a natural generalization of variance to higher dimensions.
 ---
 

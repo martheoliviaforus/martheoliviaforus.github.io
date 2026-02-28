@@ -92,6 +92,19 @@ article.card {
     font-style: normal;
 }
 
+/* Hyperlinks in research posts: black with underline */
+article.card a {
+    color: #000;
+    text-decoration: underline;
+    /* font-style: italic; */
+}
+
+article.card a:hover {
+    color: #000;
+    text-decoration: underline;
+    font-style: italic;
+}
+
 /* Line after headers in research posts (all sizes) */
 article.card h1,
 article.card h2,
@@ -178,5 +191,22 @@ div.lazy {
 
 .email-text {
     font-family: "Courier Prime", monospace;
+}
+
+/* References / sources section at bottom: no header, hanging indent, smaller grey text */
+article.card .references-list,
+article.card ol.references-list {
+    list-style-position: outside;
+    padding-left: 2.5em;
+    color: #6c757d;
+    font-size: 0.9em;
+    margin-top: 1.5em;
+    margin-bottom: 2em;
+}
+
+article.card .references-list li,
+article.card ol.references-list li {
+    margin-bottom: 0.75em;
+    padding-left: 0.25em;
 }
 
