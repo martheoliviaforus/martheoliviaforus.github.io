@@ -64,15 +64,15 @@ We want the $k$-th moment $Y=e^{X}$ when $X\sim\mathcal{\mu,\sigma^2)$, so we wa
 $$
 \begin{equation}
     \begin{aligned}
-    \mathbb{E}\left[Y^k\right]=\mathbb{E}\left[e^{Xk}\right]&=\int_{-\infty}^{\infty}e^{xk}\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\tfrac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}dx\\
-    &=\int_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\tfrac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}+xk dx\\
-    &=\int_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\tfrac{1}{2\sigma^2}(x-\mu)^2+2\sigma^2xk}dx\\
-    &=\int_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\tfrac{1}{2\sigma^2}\left(x^2-\mu^2-2\sigma\mu-2\sigma^2xk\right)}dx\\
-    &=\int_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\tfrac{1}{2\sigma^2}\left[\left(x^2-\mu^2-2\sigma\mu-2\sigma^2xk\right)+\overbrace{\left(2\sigma^2k\mu+k^2\sigma^4\right)-\left(2\sigma^2k\mu+k^2\sigma^4\right)}^{\text{Adding Zero}}\right]}dx\\
-    &=\int_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\tfrac{1}{2\sigma^2}\left[\left(x-\mu-k\sigma^2\right)^2-\left(2\sigma^2k\mu+k^2\sigma^4\right)\right]}dx\\
-    &=\int_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\tfrac{1}{2\sigma^2}\left(x-\mu-k\sigma^2\right)^2+\tfrac{1}{2\sigma^2}\left(\cancel{2\sigma^2}k\mu+k^2\sigma^{\cancel{4}^2}\right)}dx\\
-    &=e^{k\mu+\tfrac{1}{2}k^2\sigma^2}\int_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\tfrac{1}{2\sigma^2}\left(x-\mu-k\sigma^2\right)^2}dx\\
-    &=e^{k\mu+\tfrac{1}{2}k^2\sigma^2}\\
+    \mathbb{E}\left[Y^k\right]=\mathbb{E}\left[e^{Xk}\right]&=\int_{-\infty}^{\infty}e^{xk}\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}dx\\
+    &=\int_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2+xk} dx\\
+    &=\int_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{1}{2\sigma^2}(x-\mu)^2+2\sigma^2xk}dx\\
+    &=\int_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{1}{2\sigma^2}\left(x^2-\mu^2-2\sigma\mu-2\sigma^2xk\right)}dx\\
+    &=\int_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{1}{2\sigma^2}\left[\left(x^2-\mu^2-2\sigma\mu-2\sigma^2xk\right)+\overbrace{\left(2\sigma^2k\mu+k^2\sigma^4\right)-\left(2\sigma^2k\mu+k^2\sigma^4\right)}^{\text{Adding Zero}}\right]}dx\\
+    &=\int_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{1}{2\sigma^2}\left[\left(x-\mu-k\sigma^2\right)^2-\left(2\sigma^2k\mu+k^2\sigma^4\right)\right]}dx\\
+    &=\int_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{1}{2\sigma^2}\left(x-\mu-k\sigma^2\right)^2+\frac{1}{2\sigma^2}\left(\cancel{2\sigma^2}k\mu+k^2\sigma^{\cancel{4}^2}\right)}dx\\
+    &=e^{k\mu+\frac{1}{2}k^2\sigma^2}\int_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{1}{2\sigma^2}\left(x-\mu-k\sigma^2\right)^2}dx\\
+    &=e^{k\mu+\frac{1}{2}k^2\sigma^2}\\
     \end{aligned}
 \end{equation}
 $$
@@ -92,7 +92,7 @@ $$
 \begin{equation}
 \begin{aligned}
     \text{Var}(Y)&=\mathbb{E}\left[Y^2\right]-\mathbb{E}[Y]^2\\
-                 &=e^{2\mu+\tfrac{1}{2}\cdot 4\sigma^2}-\left[e^{\mu+\tfrac{1}{2}\sigma^2}\right]^2\\
+                 &=e^{2\mu+\frac{1}{2}\cdot 4\sigma^2}-\left[e^{\mu+\frac{1}{2}\sigma^2}\right]^2\\
                  &=e^{2\mu+2\sigma^2}-e^{2\mu+\sigma^2}\\
 \end{aligned}
 \end{equation}
