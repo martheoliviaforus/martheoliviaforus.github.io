@@ -174,7 +174,7 @@ should hold
 
 $$
 \begin{equation}
-    \exp(\mu-\sigma^2)\leq\exp(\mu)\leq\exp\left(\mu+\frac{1}{2}\sigma^2\right)
+    \exp(\mu-\sigma^2)\leq\exp(\mu)\leq\exp\left(\mu+\frac{1}{2}\sigma^2\right).
 \end{equation}
 $$
 
