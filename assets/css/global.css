@@ -210,3 +210,13 @@ article.card ol.references-list li {
     padding-left: 0.25em;
 }
 
+/* X (Twitter) embeds in blog posts */
+.tweet-embed {
+    display: flex;
+    justify-content: center;
+}
+
+.tweet-embed .twitter-tweet {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}

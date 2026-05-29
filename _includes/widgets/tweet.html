@@ -1,0 +1,12 @@
+{% comment %}
+  Embeds an X (Twitter) post. Requires widgets.js (loaded by the blog layout).
+
+  Usage:
+  {% include widgets/tweet.html url="https://x.com/romanaegis/status/2044948534344974402" %}
+{% endcomment %}
+{% assign tweet_url = include.url | split: '?' | first | strip %}
+<div class="tweet-embed my-4">
+  <blockquote class="twitter-tweet" data-dnt="true">
+    <a href="{{ tweet_url }}"></a>
+  </blockquote>
+</div>
