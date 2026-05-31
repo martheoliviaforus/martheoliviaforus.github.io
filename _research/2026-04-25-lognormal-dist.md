@@ -73,7 +73,7 @@ $$
     &=\int_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{1}{2\sigma^2}\left[\left(x-\mu-k\sigma^2\right)^2-\left(2\sigma^2k\mu+k^2\sigma^4\right)\right]}dx\\
     &=\int_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{1}{2\sigma^2}\left(x-\mu-k\sigma^2\right)^2+\frac{1}{2\sigma^2}\left(\cancel{2\sigma^2}k\mu+k^2\sigma^{\cancel{4}^2}\right)}dx\\
     &=e^{k\mu+\frac{1}{2}k^2\sigma^2}\int_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{1}{2\sigma^2}\left(x-\mu-k\sigma^2\right)^2}dx\\
-    &=e^{k\mu+\frac{1}{2}k^2\sigma^2}\\
+    &=e^{k\mu+\frac{1}{2}k^2\sigma^2}\cdot 1\\
     \end{aligned}
 \end{equation}
 $$
