@@ -64,7 +64,8 @@ We want the $k$-th moment $Y=e^{X}$ when $X\sim\mathcal{\mu,\sigma^2)$, so we wa
 $$
 \begin{equation}
     \begin{aligned}
-    \mathbb{E}\left[Y^k\right]=\mathbb{E}\left[e^{Xk}\right]&=\int_{-\infty}^{\infty}e^{xk}\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}dx\\
+    \mathbb{E}\left[Y^k\right]&=\mathbb{E}\left[e^{Xk}\right]\\
+    &=\int_{-\infty}^{\infty}e^{xk}\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}dx\\
     &=\int_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2+xk} dx\\
     &=\int_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{1}{2\sigma^2}(x-\mu)^2+2\sigma^2xk}dx\\
     &=\int_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{1}{2\sigma^2}\left(x^2-\mu^2-2\sigma\mu-2\sigma^2xk\right)}dx\\
