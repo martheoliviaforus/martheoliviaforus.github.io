@@ -59,7 +59,7 @@ $$
 \end{equation}
 $$
 
-We want the $k$-th moment $Y=e^{X}$ when $X\sim\mathcal{\mu,\sigma^2)$, so we want to simplify the following:
+We want the $k$-th moment $Y=e^{X}$ when $X\sim\mathcal(\mu,\sigma^2)$, so we want to simplify the following:
 
 $$
 \begin{equation}
